@@ -26,7 +26,7 @@ $(document).on("click", "h3", function() {
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
       // If there's a note in the article
-      // if (data.note) {
+      if (data.note) {
          $("#notes").append("<br>");
          $("#notes").append("<hr>");
          $("#notes").append("<br>");
@@ -42,7 +42,7 @@ $(document).on("click", "h3", function() {
         // $("#titleinput").val(data.note.title);
         // Place the body of the note in the body textarea
         // $("#bodyinput").val(data.note.body);
-      // }
+      }
     });
 });
 
