@@ -27,11 +27,6 @@ $(document).on("click", "h3", function() {
 
       // If there's a note in the article
       // if (data.note) {
-       
-        
-      
-          console.log("loop");
-          
          $("#notes").append("<br>");
          $("#notes").append("<hr>");
          $("#notes").append("<br>");
