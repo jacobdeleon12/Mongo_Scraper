@@ -18,17 +18,19 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/scrape", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/scrape", { useNewUrlParser: true });
 // set up promises wirth mongoose
-mongoose.Promise = global.Promise;
-// Connect to the Mongo DB
-mongoose.connect(
- process.env.MONGODB_URI ||
-   "mongodb://<dbuser>:<dbpassword>@ds245677.mlab.com:45677/heroku_c7qt3b5d",
- {
-   useNewUrlParser: true
- }
-);
+
+
+// mongoose.Promise = global.Promise;
+// // Connect to the Mongo DB
+// mongoose.connect(
+//  process.env.MONGODB_URI ||
+//    "mongodb://<dbuser>:<dbpassword>@ds245677.mlab.com:45677/heroku_c7qt3b5d",
+//  {
+//    useNewUrlParser: true
+//  }
+// );
 
 // Routes
 require("./routes/apiRoutes")(app);

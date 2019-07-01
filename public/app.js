@@ -34,16 +34,24 @@ $(document).on("click", "h3", function() {
          $("#notes").append("<p>" + data.note.title + "</p>");
          $("#notes").append("<h2>" + "Saved Notes" + "</h2>");
          $("#notes").append("<p>" + data.note.body + "</p>");
-        //  console.log(data[i].note.body );
-         
-        
-         
-        // Place the title of the note in the title input
-        // $("#titleinput").val(data.note.title);
-        // Place the body of the note in the body textarea
-        // $("#bodyinput").val(data.note.body);
+         $("#notes").append("<button data-id='" + data.note._id + "' class='deleteNote'>Delete</button>");
+
       }
     });
+});
+
+$(document).on("click", ".deleteNote", function() {
+  var thisId = $(this).attr("data-id");
+  console.log(thisId);
+  
+  $.ajax({
+    method: "delete",
+    url:"/articles/" + thisId,
+  }).then (function(data){
+
+    // res.json(data)
+    $("#notes").empty();
+  });
 });
 
 // When you click the savenote button
