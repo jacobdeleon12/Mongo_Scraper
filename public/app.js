@@ -1,15 +1,8 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-  }
-});
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "h3", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
@@ -33,12 +26,28 @@ $(document).on("click", "p", function() {
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
       // If there's a note in the article
-      if (data.note) {
+      // if (data.note) {
+       
+        
+      
+          console.log("loop");
+          
+         $("#notes").append("<br>");
+         $("#notes").append("<hr>");
+         $("#notes").append("<br>");
+         $("#notes").append("<h2>" + "Saved Title" + "</h2>");
+         $("#notes").append("<p>" + data.note.title + "</p>");
+         $("#notes").append("<h2>" + "Saved Notes" + "</h2>");
+         $("#notes").append("<p>" + data.note.body + "</p>");
+        //  console.log(data[i].note.body );
+         
+        
+         
         // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
+        // $("#titleinput").val(data.note.title);
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
-      }
+        // $("#bodyinput").val(data.note.body);
+      // }
     });
 });
 
@@ -72,6 +81,21 @@ $(document).on("click", "#savenote", function() {
 });
 
 
-$(".scrape").on("click", function(){
-  location.reload();
-})
+$("#scrape").on("click", function () {
+  $.ajax({
+      type:"GET",
+      url:"/scrape"
+  }).then(function(response) {
+      console.log(response);
+
+      $.getJSON("/articles", function(data) {
+        // For each one
+        for (var i = 0; i < data.length; i++) {
+          // Display the apropos information on the page
+          $("#articles").append("<h3 data-id='" + data[i]._id + "'>" + data[i].title + "</h3><br /> <a href='" + data[i].link + "'>"+data[i].link+"</a><hr>");
+        }
+      });
+  });
+});
+
+
